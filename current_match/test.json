@@ -1,0 +1,29 @@
+{
+  "cases": [
+    {
+      "networth": "279",
+      "advantage": "radiant",
+      "time": "8",
+      "tower_radiant": "11111111111",
+      "tower_dire": "11111111111",
+      "teams": [
+        {
+          "type": "radiant",
+          "hero1": "Alchemist",
+          "hero2": "Viper",
+          "hero3": "Hoodwink",
+          "hero4": "Doom",
+          "hero5": "Lone Druid"
+        },
+        {
+          "type": "dire",
+          "hero1": "Rubick",
+          "hero2": "Tiny",
+          "hero3": "Ursa",
+          "hero4": "Silencer",
+          "hero5": "Winter Wyvern"
+        }
+      ]
+    }
+  ]
+}
