@@ -33,7 +33,7 @@ def open_file(file_path, path_to_save):
         del final_df['winner']
 
     del final_df['advantage']
-    final_df.to_csv(path_to_save)
+    return final_df
 
 
 def extract_features():

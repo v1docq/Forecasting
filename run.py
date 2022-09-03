@@ -9,11 +9,10 @@ from parser_utils.parser_module import enconde_heroes, open_file
 def get_prediction(match_id):
     file_path = f'./current_match/{match_id}.json'
     save_path = f'./current_match/{match_id}.csv'
-    open_file(file_path, path_to_save=save_path)
-    df_encoded = pd.read_csv(save_path)
+    df_encoded = open_file(file_path, path_to_save=save_path)
     df_model_features = df_encoded.values
-    df_model_class_labels = []
-    del df_encoded['Unnamed: 0']
+    if 'Unnamed: 0' in df_encoded.columns:
+        del df_encoded['Unnamed: 0']
     key = None
     model_time_segment = None
     model_path = None
@@ -40,7 +39,7 @@ def get_prediction(match_id):
         key = '3'
     model_path = model_dict[key]
 
-    clf_model = FedotModel(x_data=df_model_features, y_data=df_model_class_labels, time=30)
+    clf_model = FedotModel(x_data=df_model_features, y_data=[], time=30)
     clf_model.fedot_model.load(model_path)
     predictions = clf_model.evalutate(x_test=df_model_features)[0]
     final_result = predictions[0] * 100
