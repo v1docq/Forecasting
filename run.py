@@ -9,7 +9,7 @@ from parser_utils.parser_module import enconde_heroes, open_file
 def get_prediction(match_id):
     file_path = f'./current_match/{match_id}.json'
     save_path = f'./current_match/{match_id}.csv'
-    list_of_df = open_file(file_path, path_to_save=f'./current_match/{match_id}.csv')
+    list_of_df = open_file(file_path, path_to_save=save_path)
     # files = glob.glob(save_path)
     # df_encoded = pd.concat([pd.read_csv(f) for f in files], axis=0)
     df_encoded = pd.read_csv(save_path)

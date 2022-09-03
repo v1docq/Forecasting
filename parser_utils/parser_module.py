@@ -8,12 +8,12 @@ def open_file(file_path, path_to_save):
     # files = [glob.glob(file_path)]
     files = [file_path]
     list_of_df = []
-    count = 0
+    # count = 0
     for f in files:
         try:
             tmp = []
             json_df = pd.read_json(f)
-            count += 1
+            # count += 1
             for idx, row in json_df.iterrows():
                 data = pd.DataFrame.from_dict(row.values[0])
                 heroes_dict = data['teams'].values
