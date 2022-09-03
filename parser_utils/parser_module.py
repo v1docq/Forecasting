@@ -4,8 +4,9 @@ import glob
 import json
 
 
-def open_file(file_path,path_to_save):
-    files = glob.glob(file_path)
+def open_file(file_path, path_to_save):
+    # files = [glob.glob(file_path)]
+    files = [file_path]
     list_of_df = []
     count = 0
     for f in files:
@@ -16,7 +17,7 @@ def open_file(file_path,path_to_save):
             for idx, row in json_df.iterrows():
                 data = pd.DataFrame.from_dict(row.values[0])
                 heroes_dict = data['teams'].values
-                data['time'] =data['time'].astype(int)
+                data['time'] = data['time'].astype(int)
                 data['networth'] = data['networth'].astype(int)
                 data['time'] = data['time'] / 60
                 data['time'] = data['time'].apply(lambda x: np.round(x, decimals=2))
@@ -35,12 +36,13 @@ def open_file(file_path,path_to_save):
             final_df = pd.concat(tmp)
             final_df = final_df.sort_values(by=['time'])
             if 'winner' in final_df.columns:
-                final_df['label'] = [1 if x=='dire' else 0 for x in final_df['winner'].values]
+                final_df['label'] = [1 if x == 'dire' else 0 for x in final_df['winner'].values]
                 del final_df['winner']
 
             final_df['match_id'] = f
             del final_df['advantage']
-            final_df.to_csv(f'./{path_to_save}/{count}.csv')
+            #final_df.to_csv(f'./{path_to_save}/{count}.csv')
+            final_df.to_csv(path_to_save)
             list_of_df.append(final_df)
         except Exception as ex:
             print(f'Error-{ex}')

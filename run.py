@@ -6,7 +6,13 @@ from core.train_script import FedotModel
 from parser_utils.parser_module import enconde_heroes, open_file
 
 
-def get_prediction(df_encoded):
+def get_prediction(match_id):
+    file_path = f'./current_match/{match_id}.json'
+    save_path = f'./current_match/{match_id}.csv'
+    list_of_df = open_file(file_path, path_to_save=f'./current_match/{match_id}.csv')
+    # files = glob.glob(save_path)
+    # df_encoded = pd.concat([pd.read_csv(f) for f in files], axis=0)
+    df_encoded = pd.read_csv(save_path)
     df_model_features = df_encoded.values
     df_model_class_labels = []
     match_id = df_encoded['match_id'].values[0]
@@ -56,12 +62,8 @@ def get_prediction(df_encoded):
     #     json.dump(responce_dict, f)
 
     return responce_dict
-
-
-if __name__ == '__main__':
-    file_path = './current_match/*.json'
-    save_path = './current_match/*.csv'
-    list_of_df = open_file(file_path, path_to_save='./current_match/')
-    files = glob.glob(save_path)
-    df_encoded = pd.concat([pd.read_csv(f) for f in files], axis=0)
-    get_prediction(df_encoded)
+#
+#
+# if __name__ == '__main__':
+#
+#     get_prediction(df_encoded)
