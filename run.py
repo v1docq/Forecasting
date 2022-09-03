@@ -9,15 +9,11 @@ from parser_utils.parser_module import enconde_heroes, open_file
 def get_prediction(match_id):
     file_path = f'./current_match/{match_id}.json'
     save_path = f'./current_match/{match_id}.csv'
-    list_of_df = open_file(file_path, path_to_save=save_path)
-    # files = glob.glob(save_path)
-    # df_encoded = pd.concat([pd.read_csv(f) for f in files], axis=0)
+    open_file(file_path, path_to_save=save_path)
     df_encoded = pd.read_csv(save_path)
     df_model_features = df_encoded.values
     df_model_class_labels = []
-    match_id = df_encoded['match_id'].values[0]
     del df_encoded['Unnamed: 0']
-    del df_encoded['match_id']
     key = None
     model_time_segment = None
     model_path = None
@@ -58,8 +54,6 @@ def get_prediction(match_id):
     responce_dict['dire_win_probability'] = f'{np.round(final_result)} %'
     responce_dict['radiant_win_probability'] = f'{np.round(100 - final_result)} %'
     responce_dict["time"] = model_time_segment
-    # with open('./current_match/prediction.json', 'w') as f:
-    #     json.dump(responce_dict, f)
 
     return responce_dict
 #
