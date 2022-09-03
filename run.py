@@ -36,7 +36,6 @@ def get_prediction(df_encoded):
         key = '2'
     else:
         key = '3'
-    model_time_segment = 11
     model_path = model_dict[key]
 
     clf_model = FedotModel(x_data=df_model_features, y_data=df_model_class_labels, time=30)
