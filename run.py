@@ -18,8 +18,8 @@ def get_prediction(match_id):
     model_path = None
 
     model_dict = {'0': r'.\models\0-10\pipeline\pipeline.json',
-                  '1': r'.\models\10-20\pipeline\pipeline.json',
-                  '2': r'.\models\20-30\pipeline\pipeline.json',
+                  '1': r'.\models\5-15\pipeline\pipeline.json',
+                  '2': r'.\models\15-25\pipeline\pipeline.json',
                   '3': r'.\models\30\pipeline\pipeline.json'}
 
     responce_dict = {
@@ -29,11 +29,11 @@ def get_prediction(match_id):
         "time": "10:30"
     }
     model_time_segment = df_encoded['time'].values[0]
-    if model_time_segment < 10:
+    if model_time_segment < 5:
         key = '0'
-    elif 10 < model_time_segment < 20:
+    elif 5 < model_time_segment < 15:
         key = '1'
-    elif 20 < model_time_segment < 30:
+    elif 15 < model_time_segment < 25:
         key = '2'
     else:
         key = '3'
